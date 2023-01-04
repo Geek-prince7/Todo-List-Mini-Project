@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/homepage.css" rel="stylesheet" />
+    <title>Todo App</title>
+</head>
+
+<body>
+    <div id="main-container">
+        <h1>TODO APP</h1>
+        <form method="POST" action="">
+            <div class="input-container">
+                <label>Description</label>
+                <input id="task-desc" type="text" placeholder="What do you need to do?" required />
+            </div>
+            <hr />
+            <div>
+                <div class="input-container">
+                    <label>Category</label>
+                    <select id="task-cat">
+                        <option label="Choose a category" value=""></option>
+                        <option label="Personal" value="Personal"></option>
+                        <option label="office" value="office"></option>
+                        <option label="work" value="work"></option>
+                        <option label="other" value="other"></option>
+                    </select>
+                </div>
+                <div class="input-container">
+                    <label>Due Date</label>
+                    <input id="task-date" type="date" required />
+                </div>
+            </div>
+            <hr />
+            <div id="btn-container">
+                <button id="add-task"  onclick="addTask(event)">ADD TASK</button>
+                <button id="delete-task" onclick="deleteTask(event)">DELETE TASK</button>
+            </div>
+        </form>
+        <div id="todos-container">
+            <% for(let task of tasks){ %>
+            <div class="todo">
+                <input type="checkbox" name="checkbox-row" value="<%= task._id %>" />
+                <div>
+                    <section>
+                        <strong> <%= task.description %></strong>
+                        <span> <%= task.due_date.getDate() %>-<%= task.due_date.getMonth() %>-<%= task.due_date.getFullYear() %> </span>
+                    </section>
+                    <button class="<%= task.category %>"><%= task.category %></button>
+                </div>
+            </div>
+            <hr />
+            <% } %>
+            
+        </div>
+    </div>
+    <Script type="text/javascript" src="/js/homepage.js"></Script>
+</body>
+
+</html>
